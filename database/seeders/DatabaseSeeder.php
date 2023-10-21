@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\TipoPresenca;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,7 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        //$tpres = new TipoPresencaSeeder();
+        //$tpres->run();
+
+        //$materia = new MateriaSeeder();
+        //$materia->run();
+
+        //$permissao = new PermissaoSeeder();
+        //$permissao->run();
+
+        //$usuario = new UsuarioSeeder();
+        //$usuario->run();
+
+        //$curso = new CursoSeeder();
+        //$curso->run();
+
+        //$class = new ClasseSeeder();
+        //$class->run();
+
+        $pres = new PresencaSeeder();
+        $pres->run();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
