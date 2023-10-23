@@ -3,64 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $alunos = Aluno::getAluno()->get();
         return $alunos;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $alunos = new Usuario();
+        $alunos->first_name = $request->first_name;
+        $alunos->last_name = $request->last_name;
+        $alunos->email = $request->email;
+        $alunos->psswd = $request->psswd;
+        $alunos->endereco = $request->endereco;
+        $alunos->id_permissao = 3;
+        $alunos->save();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Aluno $aluno)
+    public function show(string $id)
     {
-        //
+        return Aluno::where('id', $id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Aluno $aluno)
+    public function update(Request $request, string $id)
     {
-        //
+        $alunos = Usuario::find($id);
+        $alunos->first_name = $request->first_name;
+        $alunos->last_name = $request->last_name;
+        $alunos->email = $request->email;
+        $alunos->psswd = $request->psswd;
+        $alunos->endereco = $request->endereco;
+        $alunos->save();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Aluno $aluno)
+    public function destroy(string $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Aluno $aluno)
-    {
-        //
+        $aluno = Usuario::find($id);
+        $aluno->delete();
     }
 }

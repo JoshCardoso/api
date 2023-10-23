@@ -12,7 +12,7 @@ class TipoPresencaController extends Controller
      */
     public function index()
     {
-        //
+        return TipoPresenca::all();
     }
 
     /**

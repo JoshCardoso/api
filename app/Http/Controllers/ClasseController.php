@@ -12,54 +12,32 @@ class ClasseController extends Controller
      */
     public function index()
     {
-        //
+        return Classe::all();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $classe = new Classe();
+        $classe->id_curso = $request->id_curso;
+        $classe->id_aluno = $request->id_aluno;
+        $classe->save();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Classe $classe)
+    public function show(string $id)
     {
-        //
+        return Classe::where('id',$id)->get();  
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Classe $classe)
+    public function update(Request $request,string $id)
     {
-        //
+        $classe = Classe::find($id);
+        $classe->id_curso = $request->id_curso;
+        $classe->id_aluno = $request->id_aluno;
+        $classe->save();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Classe $classe)
+    public function destroy(string $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Classe $classe)
-    {
-        //
+        $classe = Classe::find($id);
+        $classe->delete;
     }
 }

@@ -12,54 +12,39 @@ class PresencaController extends Controller
      */
     public function index()
     {
-        //
+        return Presenca::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $presenca = new Presenca();
+        $presenca->id_t_presenca = $request->id_t_presenca;
+        $presenca->id_classe = $request->id_classe;
+        $$presenca->data = $request->data;
+        $presenca->save();
+
+        return $presenca;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Presenca $presenca)
+    public function show(string $id)
     {
-        //
+        return Presenca::where('id_classe',$id)->get();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Presenca $presenca)
+    public function update(Request $request, string $id)
     {
-        //
+        $presenca = Presenca::find($id);
+        $presenca->id_t_presenca = $request->id_t_presenca;
+        $presenca->id_classe = $request->id_classe;
+        $$presenca->data = $request->data;
+        $presenca->save();
+
+        return $presenca;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Presenca $presenca)
+    public function destroy(string $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Presenca $presenca)
-    {
-        //
+        $presenca = Presenca::find($id);
+        $presenca->delete();
     }
 }
